@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1684554943 source:e:\programming\graphics\mainproject7\camera.cpp
+	<windows.h>
+	<gl/gl.h>
+	"camera.h"
+	<math.h>
+
+1684552543 e:\programming\graphics\mainproject7\camera.h
+
+1684554889 source:e:\programming\graphics\mainproject7\main.cpp
+	<gl/gl.h>
+	<windows.h>
+	<math.h>
+	<stdio.h>
+	<stdlib.h>
+	<iostream>
+	<string>
+	<malloc.h>
+	"camera.h"
+
