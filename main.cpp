@@ -9,14 +9,14 @@
 #include "camera.h"
 using namespace std;
 
-// ВАРИАНТ 2
+// Р’РђР РРђРќРў 2
 
-float vert[] = {1, 1, 2,  1, -1, 2,  -1, -1, 2,  -1, 1, 2};       // точки для доски
-float normal_vert[]={1, 1, 2,  1, -1, 2,  -1, -1, 2,  -1, 1, 2}; // точеки для нормалей
+float vert[] = {1, 1, 2,  1, -1, 2,  -1, -1, 2,  -1, 1, 2};       // С‚РѕС‡РєРё РґР»СЏ РґРѕСЃРєРё
+float normal_vert[]={1, 1, 2,  1, -1, 2,  -1, -1, 2,  -1, 1, 2}; // С‚РѕС‡РєРё РґР»СЏ РЅРѕСЂРјР°Р»РµР№
 
-int n = 100;  // размер поля
+int n = 100;  // СЂР°Р·РјРµСЂ РїРѕР»СЏ
 
-void Init_Light() { // реализация освещения
+void Init_Light() { // СЂРµР°Р»РёР·Р°С†РёСЏ РѕСЃРІРµС‰РµРЅРёСЏ
 
     glEnable(GL_LIGHTING);
     glEnable(GL_COLOR_MATERIAL);
@@ -24,13 +24,13 @@ void Init_Light() { // реализация освещения
     glEnable(GL_NORMALIZE);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    GLfloat light_position[] = { 0.0f, 0.0f, -2.0f, 1.0f }; // источник света
-    GLfloat light_spot_direction[] = {0.0, 0.0, -1.0, 1.0}; // позиция цели
+    GLfloat light_position[] = { 0.0f, 0.0f, -2.0f, 1.0f }; // РёСЃС‚РѕС‡РЅРёРє СЃРІРµС‚Р°
+    GLfloat light_spot_direction[] = {0.0, 0.0, -1.0, 1.0}; // РїРѕР·РёС†РёСЏ С†РµР»Рё
     GLfloat light_ambient[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     GLfloat light_diffuse[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     GLfloat light_specular[] = { 0.0f, 0.0f, 0.0f, 1.0f };
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
-    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 50);                 // конус для направленного источника
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, 50);                 // РєРѕРЅСѓСЃ РґР»СЏ РЅР°РїСЂР°РІР»РµРЅРЅРѕРіРѕ РёСЃС‚РѕС‡РЅРёРєР°
     glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light_spot_direction);
     glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, 10);
 
@@ -39,7 +39,7 @@ void Init_Light() { // реализация освещения
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
     glEnable(GL_LIGHT0);
 }
-void Init_Material() { // параметры материала
+void Init_Material() { // РїР°СЂР°РјРµС‚СЂС‹ РјР°С‚РµСЂРёР°Р»Р°
     glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -54,7 +54,7 @@ void Init_Material() { // параметры материала
 
 void drawPrism(float radius, float height, int sides, float xPos, float yPos, float zPos, float transparency) {
 
-    float angle = (2 * M_PI) / sides;  // Угол между соседними вершинами
+    float angle = (2 * M_PI) / sides;  // СѓРіРѕР» РјРµР¶РґСѓ СЃРѕСЃРµРґРЅРёРјРё РІРµСЂС€РёРЅР°РјРё
     float halfHeight = height / 2.0f;
     glPushMatrix();
     glTranslatef(xPos, yPos, zPos);
@@ -71,7 +71,7 @@ void drawPrism(float radius, float height, int sides, float xPos, float yPos, fl
 
         glColor4f(0.2, 0.8, 0.35, transparency); // Prism color
 
-        // Вершины нижнего сечения
+        // РІРµСЂРёС€РёРЅС‹ РЅРёР¶РЅРµРіРѕ СЃРµС‡РµРЅРёСЏ
         float x1 = radius * cos(i * angle);
         float y1 = radius * sin(i * angle);
         float z1 = -halfHeight;
@@ -80,7 +80,7 @@ void drawPrism(float radius, float height, int sides, float xPos, float yPos, fl
         float y2 = radius * sin((i + 1) * angle);
         float z2 = -halfHeight;
 
-        // Боковая грань
+        // Р±РѕРєРѕРІР°СЏ РіСЂР°РЅСЊ
         glNormal3f(x1, y1, 0.0f);
         glVertex3f(x1, y1, z1);
         glNormal3f(x1, y1, 0.0f);
@@ -95,7 +95,7 @@ void drawPrism(float radius, float height, int sides, float xPos, float yPos, fl
         glNormal3f(x2, y2, 0.0f);
         glVertex3f(x2, y2, z2);
 
-        // Вершины верхнего сечения
+        // РІРµСЂС€РёРЅС‹ РІРµСЂС…РЅРµРіРѕ СЃРµС‡РµРЅРёСЏ
         float x3 = radius * cos(i * angle);
         float y3 = radius * sin(i * angle);
         float z3 = halfHeight;
@@ -104,7 +104,7 @@ void drawPrism(float radius, float height, int sides, float xPos, float yPos, fl
         float y4 = radius * sin((i + 1) * angle);
         float z4 = halfHeight;
 
-        // Боковая грань
+        // Р±РѕРєРѕРІР°СЏ РіСЂР°РЅСЊ
         glNormal3f(x3, y3, 0.0f);
         glVertex3f(x3, y3, z3);
         glNormal3f(x4, y4, 0.0f);
@@ -119,7 +119,7 @@ void drawPrism(float radius, float height, int sides, float xPos, float yPos, fl
         glNormal3f(x4, y4, 0.0f);
         glVertex3f(x4, y4, z4 + height);
 
-        // Верхняя и нижняя
+        // РІРµСЂС…РЅСЏСЏ Рё РЅРёР¶РЅСЏСЏ
         glNormal3f(0.0f, 0.0f, -1.0f);
         glVertex3f(0.0f, 0.0f, z1 + height);
         glVertex3f(x2, y2, z2 + height);
@@ -147,14 +147,14 @@ void drawPrism(float radius, float height, int sides, float xPos, float yPos, fl
 }
 
 
-void MovePlayer() {  // интерактив в сцене
+void MovePlayer() {  // РёРЅС‚РµСЂР°РєС‚РёРІ РІ СЃС†РµРЅРµ
     Camera_DirectionalMovement(GetKeyState('W')<0 ? 1 : (GetKeyState('S')< 0 ? -1 : 0),
                            GetKeyState('D')<0 ? 1 : (GetKeyState('A')< 0 ? -1 : 0),
                            0.1);
     Camera_MouseMovement(400,400,0.5);
 }
 
-void ShowWorld() { // отрисовка сцены
+void ShowWorld() { // РѕС‚СЂРёСЃРѕРІРєР° СЃС†РµРЅС‹
     glEnableClientState(GL_NORMAL_ARRAY);
     glNormalPointer(GL_FLOAT,0,&normal_vert);
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -163,25 +163,25 @@ void ShowWorld() { // отрисовка сцены
             for (int j = -n/2; j < n/2; j++) {
                 glPushMatrix();
                     if ((i + j) % 2 == 0)
-                        glColor3f(1, 1, 1); // белый сегмент
+                        glColor3f(1, 1, 1); // Р±РµР»С‹Р№ СЃРµРіРјРµРЅС‚
                     else
-                        glColor3f(0, 0, 0);  // черный сегмент
+                        glColor3f(0, 0, 0);  // С‡РµСЂРЅС‹Р№ СЃРµРіРјРµРЅС‚
 
                     glTranslatef(i * 2, j * 2, 0);
                     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
                 glPopMatrix();
             }
-                glLineWidth(1);             // осевые линии
+                glLineWidth(1);             // РћРЎР•Р’Р«Р• Р›РРќРР
     glDisableClientState(GL_VERTEX_ARRAY);
     glDisable(GL_NORMAL_ARRAY);
     glBegin(GL_LINES);
-        glColor3d(1,0,0);
+        glColor3d(1,0,0); //R
         glVertex3f(-1000,0,0);
         glVertex3f(1000,0,0);
-        glColor3d(0,1,0);
+        glColor3d(0,1,0); //G
         glVertex3f(0,-1000,0);
         glVertex3f(0,1000,0);
-        glColor3d(0,0,1);
+        glColor3d(0,0,1); //B
         glVertex3f(0,0,-1000);
         glVertex3f(0,0,1000);
     glEnd( );
@@ -247,7 +247,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     /* enable OpenGL for the window */
     EnableOpenGL(hwnd, &hDC, &hRC);
     glFrustum(-1,1, -1,1, 2,1000); // camera placement
-    glEnable(GL_DEPTH_TEST); // карта глубины
+    glEnable(GL_DEPTH_TEST); // РєР°СЂС‚Р° РіР»СѓР±РёРЅС‹
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_NORMALIZE);
